@@ -10,6 +10,7 @@ Pillow==10.4.0
 torch==2.4.1
 torchvision==0.19.1
 facenet-pytorch==2.5.3
+mtcnn==1.0.0
 
 # Face recognition utilities (optional but useful)
 scikit-learn==1.5.2
@@ -25,3 +26,21 @@ tqdm==4.66.5
 # Original version (0.10.11) was incompatible with Python 3.12.
 # Removing the version pin lets pip install the latest compatible version (e.g., 0.10.14 or later).
 mediapipe
+
+# for cnn
+tensorflow>=2.12.0
+scikit-learn>=1.2.0
+matplotlib>=3.7.0
+
+# facenet
+#facenet-pytorch>=2.5.0
+#torch>=2.0.0
+#opencv-python>=4.8.0
+#numpy>=1.24.0
+#scikit-learn>=1.2.0
+#pandas>=2.0.0
+
+## faceArch
+# insightface==0.7.3
+# onnxruntime==1.23.2
+
