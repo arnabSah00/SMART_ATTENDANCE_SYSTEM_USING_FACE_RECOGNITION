@@ -33,8 +33,11 @@ CONFIDENCE_THRESHOLD = 0.8
 def mark_attendance(student_id):
     now = datetime.datetime.now()
     if student_id not in attendance:
-        attendance[student_id] = now.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"Attendance marked for Student ID {student_id} at {attendance[student_id]}")
+        day = now.strftime("%A")               # E.g., Thursday
+        date_part = now.strftime("%Y-%m-%d")   # E.g., 2025-11-06
+        time_part = now.strftime("%H:%M:%S")   # E.g., 18:33:22
+        attendance[student_id] = (day, date_part, time_part)
+        print(f"Attendance marked for Student ID {student_id} on {day} at {date_part} {time_part}")
 
 def main():
     cap = cv2.VideoCapture(0)
@@ -96,11 +99,13 @@ def main():
     # Save attendance to CSV
     with open("attendance.csv", "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["StudentID", "Timestamp"])
-        for student_id, timestamp in attendance.items():
-            writer.writerow([student_id, timestamp])
+        writer.writerow(["StudentID", "Day", "Date", "Time"])
+        for student_id, (day, date_part, time_part) in attendance.items():
+            writer.writerow([student_id, day, date_part, time_part])
 
     print("Attendance saved to attendance.csv")
+
+    ## create a object of attendance record for save in data base
 
 if __name__ == "__main__":
     main()
